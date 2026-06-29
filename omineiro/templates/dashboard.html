@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Dashboard{% endblock %}
+{% block pagina_titulo %}Dashboard{% endblock %}
+{% block pagina_sub %}Visão geral do estoque{% endblock %}
+
+{% block conteudo %}
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-label">Total de Produtos</div>
+    <div class="card-valor">{{ total_produtos }}</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Em Alerta</div>
+    <div class="card-valor {% if alertas > 0 %}alerta{% else %}ok{% endif %}">{{ alertas }}</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Movimentações Hoje</div>
+    <div class="card-valor">{{ movimentacoes_hoje }}</div>
+  </div>
+</div>
+
+<div class="tabela-wrap">
+  <div class="tabela-header">
+    <span class="tabela-titulo">Últimas Movimentações</span>
+    <a href="{{ url_for('movimentacoes.nova') }}" class="btn btn-primario btn-sm">+ Registrar</a>
+  </div>
+
+  {% if ultimas %}
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Tipo</th>
+        <th>Quantidade</th>
+        <th>Data / Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in ultimas %}
+      <tr>
+        <td>{{ m.produto.nome }}</td>
+        <td><span class="badge badge-{{ m.tipo }}">{{ m.tipo | capitalize }}</span></td>
+        <td>{{ m.quantidade }} {{ m.produto.unidade }}</td>
+        <td>{{ m.data_hora.strftime('%d/%m/%Y %H:%M') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="vazio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>
+    <p>Nenhuma movimentação registrada ainda.</p>
+    <a href="{{ url_for('movimentacoes.nova') }}" class="btn btn-primario">Registrar primeira movimentação</a>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

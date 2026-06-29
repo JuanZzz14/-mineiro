@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro — Ô Mineiro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="{{ url_for('static', filename='img/mascote.svg') }}" alt="Mascote" class="login-mascote">
+      <h2>Ô Mineiro</h2>
+      <p>Cadastrar novo usuário</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}" style="margin-bottom:16px;">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="form-grupo">
+        <label>Nome completo</label>
+        <input type="text" name="nome" placeholder="Ex: João Silva" required>
+      </div>
+      <div class="form-grupo">
+        <label>Usuário (login)</label>
+        <input type="text" name="username" placeholder="Ex: joao" required>
+      </div>
+      <div class="form-grupo">
+        <label>Perfil</label>
+        <select name="perfil" required>
+          <option value="">Selecione...</option>
+          <option value="funcionario">Funcionário</option>
+          <option value="gestor">Gestor</option>
+        </select>
+      </div>
+      <div class="form-grupo">
+        <label>Senha</label>
+        <input type="password" name="senha" placeholder="Crie uma senha" required>
+      </div>
+      <button type="submit" class="btn btn-primario" style="width:100%; justify-content:center; margin-top:8px;">
+        Cadastrar
+      </button>
+    </form>
+
+    <a href="{{ url_for('auth.login') }}" class="login-link">← Voltar ao login</a>
+  </div>
+
+</body>
+</html>

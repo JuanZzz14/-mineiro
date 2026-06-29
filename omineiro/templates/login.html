@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Ô Mineiro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="{{ url_for('static', filename='img/mascote.svg') }}" alt="Mascote" class="login-mascote">
+      <h2>Ô Mineiro</h2>
+      <p>Sistema de Estoque</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}" style="margin-bottom:16px;">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="form-grupo">
+        <label>Usuário</label>
+        <input type="text" name="username" placeholder="Digite seu usuário" required autofocus>
+      </div>
+      <div class="form-grupo">
+        <label>Senha</label>
+        <input type="password" name="senha" placeholder="Digite sua senha" required>
+      </div>
+      <button type="submit" class="btn btn-primario" style="width:100%; justify-content:center; margin-top:8px;">
+        Entrar
+      </button>
+    </form>
+
+    <a href="{{ url_for('auth.cadastro') }}" class="login-link">Cadastrar novo usuário</a>
+  </div>
+
+</body>
+</html>

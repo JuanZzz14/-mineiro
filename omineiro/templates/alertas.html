@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Alertas{% endblock %}
+{% block pagina_titulo %}Alertas de Estoque{% endblock %}
+{% block pagina_sub %}Produtos abaixo da quantidade mínima{% endblock %}
+
+{% block conteudo %}
+
+{% if produtos %}
+  <p style="font-size:14px; color:var(--texto-suave); margin-bottom:20px;">
+    ⚠ {{ produtos | length }} produto(s) precisam de atenção.
+  </p>
+
+  {% for p in produtos %}
+  <div class="alerta-card">
+    <div class="alerta-info">
+      <strong>{{ p.nome }}</strong>
+      <span>{{ p.categoria }} · Mínimo: {{ p.quantidade_minima }} {{ p.unidade }}</span>
+    </div>
+    <div class="alerta-qty">
+      {{ p.quantidade_atual }}
+      <small>{{ p.unidade }} restante(s)</small>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div style="margin-top:24px;">
+    <a href="{{ url_for('movimentacoes.nova') }}" class="btn btn-primario">
+      Registrar Entrada
+    </a>
+  </div>
+
+{% else %}
+  <div class="vazio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <p>Tudo certo! Nenhum produto em alerta no momento.</p>
+  </div>
+{% endif %}
+
+{% endblock %}

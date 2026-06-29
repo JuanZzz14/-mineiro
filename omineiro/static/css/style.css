@@ -1,0 +1,500 @@
+/* ============================================
+   Ô MINEIRO — Sistema de Estoque
+   Paleta: Dark mode com identidade da marca
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+  --laranja:       #E8680A;
+  --laranja-hover: #C9570A;
+  --marrom-escuro: #1A0F0A;
+  --marrom-card:   #261610;
+  --marrom-borda:  #3D2010;
+  --marrom-medio:  #4A2810;
+  --texto:         #F5EDE4;
+  --texto-suave:   #B09080;
+  --verde:         #4CAF50;
+  --vermelho:      #E53935;
+  --amarelo:       #FFA726;
+  --sidebar-w:     220px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--marrom-escuro);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ============ SIDEBAR ============ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--marrom-card);
+  border-right: 1px solid var(--marrom-borda);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--marrom-borda);
+}
+
+.sidebar-mascote {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sidebar-brand-text span:first-child {
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar-brand-text strong {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  color: var(--laranja);
+  font-weight: 700;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.nav-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--texto-suave);
+  padding: 12px 16px 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--texto);
+  background: rgba(232, 104, 10, 0.08);
+  border-left-color: var(--laranja);
+}
+
+.nav-link.ativo {
+  color: var(--laranja);
+  background: rgba(232, 104, 10, 0.12);
+  border-left-color: var(--laranja);
+}
+
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.nav-alerta-badge {
+  margin-left: auto;
+  background: var(--vermelho);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 20px;
+}
+
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid var(--marrom-borda);
+}
+
+.sidebar-user {
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-bottom: 10px;
+}
+
+.sidebar-user strong {
+  display: block;
+  color: var(--texto);
+  font-size: 13px;
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.btn-logout:hover { color: var(--vermelho); }
+
+/* ============ MAIN CONTENT ============ */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--marrom-borda);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.topbar-sub {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin-top: 2px;
+}
+
+.content {
+  padding: 24px 28px;
+  flex: 1;
+}
+
+/* ============ CARDS ============ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: var(--marrom-card);
+  border: 1px solid var(--marrom-borda);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.card-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--texto-suave);
+  margin-bottom: 8px;
+}
+
+.card-valor {
+  font-family: 'Sora', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--texto);
+  line-height: 1;
+}
+
+.card-valor.alerta { color: var(--vermelho); }
+.card-valor.ok     { color: var(--verde); }
+
+/* ============ TABELA ============ */
+.tabela-wrap {
+  background: var(--marrom-card);
+  border: 1px solid var(--marrom-borda);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabela-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--marrom-borda);
+}
+
+.tabela-titulo {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--texto-suave);
+  background: rgba(0,0,0,0.15);
+  border-bottom: 1px solid var(--marrom-borda);
+}
+
+td {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(61,32,16,0.5);
+  vertical-align: middle;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: rgba(232,104,10,0.04); }
+
+/* ============ BADGES ============ */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-entrada { background: rgba(76,175,80,0.15); color: var(--verde); }
+.badge-saida   { background: rgba(229,57,53,0.15);  color: var(--vermelho); }
+.badge-ok      { background: rgba(76,175,80,0.15); color: var(--verde); }
+.badge-alerta  { background: rgba(229,57,53,0.15);  color: var(--vermelho); }
+.badge-ceasa   { background: rgba(232,104,10,0.15); color: var(--laranja); }
+
+/* ============ BOTÕES ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-primario {
+  background: var(--laranja);
+  color: #fff;
+}
+.btn-primario:hover { background: var(--laranja-hover); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--texto-suave);
+  border: 1px solid var(--marrom-borda);
+}
+.btn-secundario:hover { color: var(--texto); border-color: var(--laranja); }
+
+.btn-perigo {
+  background: transparent;
+  color: var(--vermelho);
+  border: 1px solid rgba(229,57,53,0.3);
+}
+.btn-perigo:hover { background: rgba(229,57,53,0.1); }
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+/* ============ FORMULÁRIOS ============ */
+.form-card {
+  background: var(--marrom-card);
+  border: 1px solid var(--marrom-borda);
+  border-radius: 10px;
+  padding: 28px;
+  max-width: 520px;
+}
+
+.form-grupo {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  background: var(--marrom-escuro);
+  border: 1px solid var(--marrom-borda);
+  border-radius: 7px;
+  padding: 10px 14px;
+  color: var(--texto);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--laranja);
+}
+
+select option { background: var(--marrom-card); }
+
+/* ============ FLASH MESSAGES ============ */
+.flash-wrap {
+  padding: 0 28px;
+  margin-top: 16px;
+}
+
+.flash {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.flash-sucesso { background: rgba(76,175,80,0.15); color: var(--verde); border: 1px solid rgba(76,175,80,0.3); }
+.flash-erro    { background: rgba(229,57,53,0.15);  color: var(--vermelho); border: 1px solid rgba(229,57,53,0.3); }
+
+/* ============ LOGIN PAGE ============ */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--marrom-escuro);
+}
+
+.login-card {
+  background: var(--marrom-card);
+  border: 1px solid var(--marrom-borda);
+  border-radius: 14px;
+  padding: 40px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-mascote {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.login-logo h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--laranja);
+}
+
+.login-logo p {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin-top: 2px;
+}
+
+.login-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+.login-link:hover { color: var(--laranja); }
+
+/* ============ ESTADO VAZIO ============ */
+.vazio {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--texto-suave);
+}
+
+.vazio svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.vazio p { font-size: 14px; margin-bottom: 16px; }
+
+/* ============ ALERTA CARD ============ */
+.alerta-card {
+  background: rgba(229,57,53,0.08);
+  border: 1px solid rgba(229,57,53,0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.alerta-info strong { font-size: 15px; display: block; margin-bottom: 2px; }
+.alerta-info span   { font-size: 13px; color: var(--texto-suave); }
+
+.alerta-qty {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--vermelho);
+  text-align: right;
+}
+
+.alerta-qty small {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .sidebar { width: 100%; min-height: auto; position: relative; }
+  .main { margin-left: 0; }
+  body { flex-direction: column; }
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{% if produto %}Editar Produto{% else %}Novo Produto{% endif %}{% endblock %}
+{% block pagina_titulo %}{% if produto %}Editar Produto{% else %}Novo Produto{% endif %}{% endblock %}
+{% block pagina_sub %}{% if produto %}Altere os dados do produto{% else %}Cadastre um novo item no estoque{% endif %}{% endblock %}
+
+{% block topbar_acao %}
+  <a href="{{ url_for('produtos.index') }}" class="btn btn-secundario">← Voltar</a>
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="form-card">
+  <form method="POST">
+    <div class="form-grupo">
+      <label>Nome do Produto</label>
+      <input type="text" name="nome" placeholder="Ex: Tomate, Frango, Arroz..." 
+             value="{{ produto.nome if produto else '' }}" required>
+    </div>
+
+    <div class="form-grupo">
+      <label>Categoria</label>
+      <input type="text" value="CEASA" disabled style="opacity:0.6; cursor:not-allowed;">
+    </div>
+
+    <div class="form-grupo">
+      <label>Unidade de Medida</label>
+      <select name="unidade" required>
+        <option value="">Selecione...</option>
+        {% set und = produto.unidade if produto else '' %}
+        <option value="kg"      {% if und == 'kg'      %}selected{% endif %}>kg (quilograma)</option>
+        <option value="litro"   {% if und == 'litro'   %}selected{% endif %}>litro</option>
+        <option value="unidade" {% if und == 'unidade' %}selected{% endif %}>unidade</option>
+        <option value="caixa"   {% if und == 'caixa'   %}selected{% endif %}>caixa</option>
+        <option value="pacote"  {% if und == 'pacote'  %}selected{% endif %}>pacote</option>
+      </select>
+    </div>
+
+    {% if not produto %}
+    <div class="form-grupo">
+      <label>Quantidade Inicial</label>
+      <input type="number" name="quantidade_atual" placeholder="0" min="0" step="0.1" value="0">
+    </div>
+    {% endif %}
+
+    <div class="form-grupo">
+      <label>Quantidade Mínima (alerta)</label>
+      <input type="number" name="quantidade_minima" placeholder="Ex: 5" min="0" step="0.1"
+             value="{{ produto.quantidade_minima if produto else '' }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primario" style="width:100%; justify-content:center; margin-top:8px;">
+      {% if produto %}Salvar Alterações{% else %}Cadastrar Produto{% endif %}
+    </button>
+  </form>
+</div>
+
+{% endblock %}

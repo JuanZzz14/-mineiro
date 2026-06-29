@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Chapéu -->
+  <ellipse cx="50" cy="30" rx="22" ry="5" fill="#5C3317"/>
+  <rect x="32" y="14" width="36" height="17" rx="4" fill="#7A4520"/>
+  <rect x="28" y="28" width="44" height="5" rx="2" fill="#5C3317"/>
+  <!-- Cabeça -->
+  <circle cx="50" cy="48" r="16" fill="#F4A460"/>
+  <!-- Bigode -->
+  <path d="M42 52 Q50 57 58 52" stroke="#5C3317" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Olhos -->
+  <circle cx="44" cy="46" r="2.5" fill="#3D1A08"/>
+  <circle cx="56" cy="46" r="2.5" fill="#3D1A08"/>
+  <!-- Corpo / Avental -->
+  <rect x="34" y="63" width="32" height="24" rx="4" fill="#5C3317"/>
+  <rect x="40" y="63" width="20" height="22" rx="3" fill="#8B4513"/>
+  <!-- Garfo -->
+  <line x1="72" y1="58" x2="72" y2="82" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round"/>
+  <line x1="68" y1="58" x2="68" y2="67" stroke="#C0C0C0" stroke-width="2" stroke-linecap="round"/>
+  <line x1="76" y1="58" x2="76" y2="67" stroke="#C0C0C0" stroke-width="2" stroke-linecap="round"/>
+</svg>
